@@ -36,8 +36,9 @@ $(document).ready(function(){
 		$("#feedback").text("MGHHHHGHGHG")
 	}
 	else if (guessAnswer = 0) {$("#feedback").text("BINGO")
-alert("You gots it!!")}
-	else {$("#feedback").text("Please make sure ")}
+	alert("You gots it!!")}
+
+	else {$("#feedback").text("Please make sure your answer is legit ")}
 	})
 
 	/*---refresh/new game functionality--*/
