@@ -35,10 +35,10 @@ $(document).ready(function(){
 	else if (guessAnswer >= 1) {
 		$("#feedback").text("MGHHHHGHGHG")
 	}
-	else if (guessAnswer = 0) {$("#feedback").text("BINGO")
+	else if (guessAnswer == 0) {$("#feedback").text("BINGO")
 	alert("You gots it!!")}
 
-	else {$("#feedback").text("Please make sure your answer is legit ")}
+	else {}
 	})
 
 	/*---refresh/new game functionality--*/
