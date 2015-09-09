@@ -2,14 +2,6 @@
 $(document).ready(function(){
 	/*---random number generator--*/
 	var answerNumber = Math.floor(Math.random()*100) + 1;
-	
-	function getAnswer() = {
-		var userGuess = $("#userGuess").val();
-	var guessAnswer = Math.abs(userGuess - answerNumber);
-	console.log("The user guessed " + userGuess);
-	console.log("difference between guess and actual answer is " + guessAnswer);
-	} 
-	
 	console.log("Actual answer is " + answerNumber);	
 
 	/*---listening to user number input--*/
