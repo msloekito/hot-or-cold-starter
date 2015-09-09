@@ -3,20 +3,26 @@ $(document).ready(function(){
 	/*---random number generator--*/
 	var answerNumber = Math.floor(Math.random()*100) + 1;
 	
+	function getAnswer() = {
+		var userGuess = $("#userGuess").val();
+	var guessAnswer = Math.abs(userGuess - answerNumber);
+	console.log("The user guessed " + userGuess);
+	console.log("difference between guess and actual answer is " + guessAnswer);
+	} 
 	
 	console.log("Actual answer is " + answerNumber);	
 
 	/*---listening to user number input--*/
 	$("#guessButton").click(function(){
 	var userGuess = $("#userGuess").val();
-	/*--defining variables--*/
 	var guessAnswer = Math.abs(userGuess - answerNumber);
 	console.log("The user guessed " + userGuess);
 	console.log("difference between guess and actual answer is " + guessAnswer);
 		/*--feedback to user--*/
 
 	
-	if (guessAnswer > 40) {
+
+	if	(guessAnswer > 40) {
 		$("#feedback").text("don't bother trying")
 	}
 	else if (guessAnswer > 30) {
@@ -37,10 +43,11 @@ $(document).ready(function(){
 	else if (guessAnswer >= 1) {
 		$("#feedback").text("MGHHHHGHGHG")
 	}
-	else {$("#feedback").text("BINGO")
+	else if (guessAnswer = 0) {$("#feedback").text("BINGO")
 alert("You gots it!!")}
-
+	else {$("#feedback").text("Please make sure ")}
 	})
+
 	/*---refresh/new game functionality--*/
 	$(".new").click(function(){
 		location.reload();
@@ -49,8 +56,11 @@ alert("You gots it!!")}
 	/*-- guessed numbers list--*/
 	$("#guessButton").click(function(){
 		var userGuess = $("#userGuess").val()
-		$("#guessList").append("<li>"+ userGuess +"</li>")
-		console.log("add to guessed list")
+		if (userGuess < 1 || userGuess > 100) {
+			alert("That's not a valid answer, must be between 1 and 100")
+		}
+		else {$("#guessList").append("<li>"+ userGuess +"</li>")
+		console.log("add to guessed list")}
 	});
 
 	/*-- counter functionality --*/
