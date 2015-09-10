@@ -3,7 +3,6 @@ $(document).ready(function(){
 	/*---random number generator--*/
 	var answerNumber = Math.floor(Math.random()*100) + 1;
 	console.log("Actual answer is " + answerNumber);	
-
 	
 
 	/*---listening to user number input--*/
@@ -20,20 +19,18 @@ $(document).ready(function(){
 		increaseCounter();
 		}
 	})
-	/*--feedback to user--*/
-
-	
 
 	/*---refresh/new game functionality--*/
 	$(".new").click(function(){
 		location.reload();
 	});
 
+	
 	/*-- guessed numbers list--*/
 	function validateUserInput() {
-	
-		var userGuess = $("#userGuess").val()
+		var userGuess = $("#userGuess").val();
 		var guessAnswer = Math.abs(userGuess - answerNumber);
+		
 		if (parseInt(userGuess) < 1 || parseInt(userGuess) > 100) {
 			alert("That's not a valid answer, must be between 1 and 100")
 			return false;
@@ -48,19 +45,12 @@ $(document).ready(function(){
 		}
 	};
 
-	/*-- counter functionality --*/
-	var guessCounter = 1
-	function increaseCounter() {
-		$("#count").text(guessCounter);
-		guessCounter = guessCounter + 1;
-	}
-
-
+	/*function to calculate and give feedback*/
 	function calculateUserInput() {
-		var userGuess = $("#userGuess").val();
-		var guessAnswer = Math.abs(userGuess - answerNumber);
-		console.log("The user guessed " + userGuess);
-		console.log("difference between guess and actual answer is " + guessAnswer)
+	var userGuess = $("#userGuess").val();
+	var guessAnswer = Math.abs(userGuess - answerNumber);
+	console.log("The user guessed " + userGuess);
+	console.log("difference between guess and actual answer is " + guessAnswer)
 	
 	if	(guessAnswer > 40) {
 		$("#feedback").text("don't bother trying")
@@ -88,6 +78,27 @@ $(document).ready(function(){
 
 	}
 	});
+
+	/*-- counter functionality --*/
+	var guessCounter = 1
+	function increaseCounter() {
+		var userGuess = $("#userGuess").val();
+		if (parseInt(userGuess) < 1 || parseInt(userGuess) > 100) {
+			console.log("That's not a valid answer, must be between 1 and 100")
+		}
+		else if (isNaN(userGuess)) {
+			console.log("your answer must be a number!");
+
+		}
+		else {
+			$("#count").text(guessCounter);
+		guessCounter = guessCounter + 1;
+		console.log("success")
+		}	
+	}
+
+
+
 	/*--- Display information modal box ---*/
   	$(".what").click(function(){
     	$(".overlay").fadeIn(1000);
