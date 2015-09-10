@@ -4,16 +4,64 @@ $(document).ready(function(){
 	var answerNumber = Math.floor(Math.random()*100) + 1;
 	console.log("Actual answer is " + answerNumber);	
 
+	
+
 	/*---listening to user number input--*/
 	$("#guessButton").click(function(){
-	var userGuess = $("#userGuess").val();
-	var guessAnswer = Math.abs(userGuess - answerNumber);
-	console.log("The user guessed " + userGuess);
-	console.log("difference between guess and actual answer is " + guessAnswer);
-		/*--feedback to user--*/
+		calculateUserInput();
+		validateUserInput();	
+		increaseCounter();
+	})
+	/*--pressing enter functionality--*/
+	$("#userGuess").keypress(function(e){
+		if(e.which == 13) {
+		calculateUserInput();
+		validateUserInput();
+		increaseCounter();
+		}
+	})
+	/*--feedback to user--*/
 
 	
 
+	/*---refresh/new game functionality--*/
+	$(".new").click(function(){
+		location.reload();
+	});
+
+	/*-- guessed numbers list--*/
+	function validateUserInput() {
+	
+		var userGuess = $("#userGuess").val()
+		var guessAnswer = Math.abs(userGuess - answerNumber);
+		if (parseInt(userGuess) < 1 || parseInt(userGuess) > 100) {
+			alert("That's not a valid answer, must be between 1 and 100")
+			return false;
+		}
+		else if (isNaN(userGuess)) {
+			alert("your answer must be a number!");
+			return false;
+		}
+		else {$("#guessList").append("<li>"+ userGuess +"</li>")
+		console.log("add to guessed list")
+		$("#userGuess").val("");
+		}
+	};
+
+	/*-- counter functionality --*/
+	var guessCounter = 1
+	function increaseCounter() {
+		$("#count").text(guessCounter);
+		guessCounter = guessCounter + 1;
+	}
+
+
+	function calculateUserInput() {
+		var userGuess = $("#userGuess").val();
+		var guessAnswer = Math.abs(userGuess - answerNumber);
+		console.log("The user guessed " + userGuess);
+		console.log("difference between guess and actual answer is " + guessAnswer)
+	
 	if	(guessAnswer > 40) {
 		$("#feedback").text("don't bother trying")
 	}
@@ -38,32 +86,8 @@ $(document).ready(function(){
 	else if (guessAnswer == 0) {$("#feedback").text("BINGO")
 	alert("You gots it!!")}
 
-	else {}
-	})
-
-	/*---refresh/new game functionality--*/
-	$(".new").click(function(){
-		location.reload();
+	}
 	});
-
-	/*-- guessed numbers list--*/
-	$("#guessButton").click(function(){
-		var userGuess = $("#userGuess").val()
-		if (userGuess < 1 || userGuess > 100) {
-			alert("That's not a valid answer, must be between 1 and 100")
-		}
-		else {$("#guessList").append("<li>"+ userGuess +"</li>")
-		console.log("add to guessed list")}
-	});
-
-	/*-- counter functionality --*/
-	var guessCounter = 1
-	$("#guessButton").click(function(){
-		$("#count").text(guessCounter);
-		guessCounter = guessCounter + 1;
-	});
-
-
 	/*--- Display information modal box ---*/
   	$(".what").click(function(){
     	$(".overlay").fadeIn(1000);
@@ -74,7 +98,5 @@ $(document).ready(function(){
   	$("a.close").click(function(){
   		$(".overlay").fadeOut(1000);
   	});
-
-});
 
 
